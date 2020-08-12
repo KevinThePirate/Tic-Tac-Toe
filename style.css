@@ -1,0 +1,38 @@
+body{
+    background-color: #8BD9B4;
+}
+h1{
+    color: #1E1E26;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+#game-area{
+    width: 30%;
+    height: 30vw;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    background-color: white;
+}
+
+.game-spot{
+    width: 100%;
+    border: 1px solid #1E1E26;
+    height: 100%;
+}
+.game-spot:hover{
+    background-color: #ABA0F2;
+}
+.game-spot:nth-child(3n+1){
+    border-left: 0px;;
+}
+.game-spot:nth-child(3n){
+    border-right: 0px;
+}
+.game-spot:nth-child(1),.game-spot:nth-child(2), .game-spot:nth-child(3){
+    border-top: 0px;
+}
+.game-spot:nth-child(7),.game-spot:nth-child(8), .game-spot:nth-child(9){
+    border-bottom: 0px;
+}
