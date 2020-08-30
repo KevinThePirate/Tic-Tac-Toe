@@ -8,17 +8,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Tic Tace Toe</h1>
+    <h1>Tic Tac Toe</h1>
+    <div id="player-info-area">
+        <div id="p1-area">
+            <label for="player1">Player 1</label>
+            <input id="player1" placeholder="Joe Bloggs">
+            <p id="score1">Score: <span id="area1">0</span></p>
+        </div>
+        <div id="note-area"></div>
+        <div id="p2-area">
+            <label for="player2">Player 2</label>
+            <input id="player2" placeholder="John Doe">
+            <p id="score2">Score: <span id="area2">0</span></p>
+        </div>
+    </div>
     <main id="game-area">
-        <div class="game-spot"></div>
-        <div class="game-spot"></div>
-        <div class="game-spot"></div>
-        <div class="game-spot"></div>
-        <div class="game-spot"></div>
-        <div class="game-spot"></div>
-        <div class="game-spot"></div>
-        <div class="game-spot"></div>
-        <div class="game-spot"></div>
+        <button onclick="gameBoard.init()">Start The Game</button>
     </main>
 </body>
 </html>
