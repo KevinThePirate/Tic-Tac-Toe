@@ -21,10 +21,8 @@ const gameBoard = (() => {
   const init = () => {
     console.log({turn})
     turn = 1;
-    document.getElementById('player1-title').style.backgroundColor = 'transparent'
-    document.getElementById('player2-title').style.backgroundColor = '#00c7cf'
+    styling();
     console.log({turn})
-    note(turn)
     board = ["", "", "", "", "", "", "", "", ""];
     if(player1.name != '' && player2.name != ''){
     document.getElementById("game-area").innerHTML = ''
@@ -44,18 +42,17 @@ const gameBoard = (() => {
           if (turn % 2 == 0) {
             e.target.innerHTML = "0";
             turn++;
-            document.getElementById('player2-title').style.backgroundColor = 'transparent'
-            document.getElementById('player1-title').style.backgroundColor = '#00c7cf'
+            
             board[e.target.id] = "0";
             console.log(board);
           } else {
             e.target.innerHTML = "X";
             turn++;
             board[e.target.id] = "X";
-            document.getElementById('player1-title').style.backgroundColor = 'transparent'
-            document.getElementById('player2-title').style.backgroundColor = '#00c7cf'
+            
             console.log(board);
           }
+          styling();
           check();
         }
       });
@@ -64,6 +61,17 @@ const gameBoard = (() => {
     note('ENTER NAMES TO PLAY')
   }
   };
+  const styling = () => {
+    if(turn % 2 == 0){
+      document.getElementById('player1-title').style.backgroundColor = 'transparent'
+      document.getElementById('player2-title').style.backgroundColor = '#00c7cf'
+    }
+    else{
+      document.getElementById('player2-title').style.backgroundColor = 'transparent'
+      document.getElementById('player1-title').style.backgroundColor = '#00c7cf'
+    }
+
+  }
   const note = (push) => {
     document.getElementById('note-area').innerHTML = push;
     setTimeout(function(){ document.getElementById('note-area').innerHTML ='' }, 3000);
@@ -77,6 +85,13 @@ const gameBoard = (() => {
     }
   };
   const check = () => {
+    const checkDraw = (spot) => {
+      return Boolean(spot)
+    }
+    if(board.every(checkDraw)){
+      note('DRAW')
+      init()
+    }
       winConditions.forEach(element => { //Each combination
         console.log('break')
         /*console.log(board[element[0]])
@@ -100,9 +115,7 @@ const gameBoard = (() => {
           document.getElementById('area2').innerHTML = player2.score;
           gameBoard.init();
         }
-        else{
-          console.log('keep going')
-        }
+        //alert(true + false)
         /*for (let i = 0; i < 3; i++) { //Each element of that combintation
           //console.log(element[i]) // Log every winCondition
           //element is each row of the winConditions Array
