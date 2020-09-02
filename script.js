@@ -1,5 +1,5 @@
-let turn = 1;
 const gameBoard = (() => {
+  let turn = 1;
   let board = ["", "", "", "", "", "", "", "", ""];
   const winConditions = [
     [0, 1, 2],
@@ -19,6 +19,13 @@ const gameBoard = (() => {
         }
     }*/
   const init = () => {
+    console.log({turn})
+    turn = 1;
+    document.getElementById('player1-title').style.backgroundColor = 'transparent'
+    document.getElementById('player2-title').style.backgroundColor = '#00c7cf'
+    console.log({turn})
+    note(turn)
+    board = ["", "", "", "", "", "", "", "", ""];
     if(player1.name != '' && player2.name != ''){
     document.getElementById("game-area").innerHTML = ''
     board.forEach(element => {
@@ -37,12 +44,16 @@ const gameBoard = (() => {
           if (turn % 2 == 0) {
             e.target.innerHTML = "0";
             turn++;
+            document.getElementById('player2-title').style.backgroundColor = 'transparent'
+            document.getElementById('player1-title').style.backgroundColor = '#00c7cf'
             board[e.target.id] = "0";
             console.log(board);
           } else {
             e.target.innerHTML = "X";
             turn++;
             board[e.target.id] = "X";
+            document.getElementById('player1-title').style.backgroundColor = 'transparent'
+            document.getElementById('player2-title').style.backgroundColor = '#00c7cf'
             console.log(board);
           }
           check();
@@ -65,53 +76,7 @@ const gameBoard = (() => {
       ).innerHTML += `<div class="game-spot" id="${index}">${board[index]}</div>`;
     }
   };
-  const check = () => {/*
-    for (let i = 0; i < winConditions.length; i++) {
-
-      let rowCheck = winConditions[i];
-      if (rowCheck.every( (val) => board[val] === board[rowCheck[0]])) {
-        return board[rowCheck[0]];
-      }
-      return false;
-
-    }
-    for (let index = 0; index < winConditions.length; index++) {
-      //Every Row
-      
-      let lineOfWC = winConditions[index];
-      if (
-        lineOfWC.every((val) => {
-          //if every value in the line we're checking in our winConditions passes the following test
-          //are every
-          board[val] === lineOfWC[index];
-          //console.log({ val });
-          //console.log({lineOfWC}, {index})
-        })
-      ) {
-        alert("test2");
-      }
-
-      for (let i = 0; i < winConditions[index].length; i++) {
-        lineOfWC.forEach(element => {
-          if (board[lineOfWC[i]] == 'X'){console.log('x')}
-          if (board[element] == 'X'){console.log('y')}
-        })
-        //Every Item In That Row
-        //console.log(winConditions[index][i])
-        /*if (!winConditions[index][i]) {
-          console.log("UNDIES");
-        }
-        let test = lineOfWC[i]
-        //console.log({test})
-        board.forEach(element => {
-          if(!element == ''){
-            console.log(element)
-          }
-        })
-
-      }
-    }*/
-    
+  const check = () => {
       winConditions.forEach(element => { //Each combination
         console.log('break')
         /*console.log(board[element[0]])
@@ -206,7 +171,12 @@ gameBoard.init();
 function test(){
   alert(document.getElementById('player1').value)
 }
-window.addEventListener('keypress',() =>{
+window.addEventListener('keyup',() =>{
   player1.name = document.getElementById('player1').value;
   player2.name = document.getElementById('player2').value;
 })
+
+/*const inputs = document.getElementsByTagName('input')
+for(let cell of inputs){
+  cell.style.width = '10%';
+}*/
