@@ -40,11 +40,13 @@ const gameBoard = (() => {
         if (!e.target.innerHTML) {
           
           if (turn % 2 == 0) {
-            e.target.innerHTML = "0";
+            bestMove();
+            turn++;
+            /*e.target.innerHTML = "0";
             turn++;
             
             board[e.target.id] = "0";
-            console.log(board);
+            console.log(board);*/
           } else {
             e.target.innerHTML = "X";
             turn++;
@@ -76,6 +78,7 @@ const gameBoard = (() => {
     }
 
   }
+  
   const note = (push) => {
     document.getElementById('note-area').innerHTML = push;
     setTimeout(function(){ document.getElementById('note-area').innerHTML ='' }, 3000);
