@@ -65,10 +65,14 @@ const gameBoard = (() => {
     if(turn % 2 == 0){
       document.getElementById('player1-title').style.backgroundColor = 'transparent'
       document.getElementById('player2-title').style.backgroundColor = '#00c7cf'
+      document.getElementById('player2-title').style.color = 'black'
+      document.getElementById('player1-title').style.color = 'white'
     }
     else{
       document.getElementById('player2-title').style.backgroundColor = 'transparent'
       document.getElementById('player1-title').style.backgroundColor = '#00c7cf'
+      document.getElementById('player1-title').style.color = 'black'
+      document.getElementById('player2-title').style.color = 'white'
     }
 
   }
