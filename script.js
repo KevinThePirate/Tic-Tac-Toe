@@ -1,3 +1,5 @@
+let score;
+import {bestMove, minimax} from './minimax.js'
 const gameBoard = (() => {
   let turn = 1;
   let board = ["", "", "", "", "", "", "", "", ""];
@@ -40,8 +42,13 @@ const gameBoard = (() => {
         if (!e.target.innerHTML) {
           
           if (turn % 2 == 0) {
-            bestMove();
+            bestMove(board);
+            board[bestMove(board)] = '0'
+            //alert(bestMove(board))
+            document.getElementById(bestMove(board)).innerHTML = '0'
+            document.getElementById(bestMove(board)).style.backgroundColor = 'red';
             turn++;
+            console.log(board);
             /*e.target.innerHTML = "0";
             turn++;
             
@@ -100,7 +107,7 @@ const gameBoard = (() => {
       init()
     }
       winConditions.forEach(element => { //Each combination
-        console.log('break')
+        //console.log('break')
         /*console.log(board[element[0]])
         console.log(board[element[1]])
         console.log(board[element[2]])*/
@@ -172,7 +179,7 @@ const gameBoard = (() => {
 
       
   };
-  return { update, init };
+  return { update, init, board };
 })();
 const displayController = (() => {
   return {};
@@ -200,3 +207,6 @@ window.addEventListener('keyup',() =>{
 for(let cell of inputs){
   cell.style.width = '10%';
 }*/
+
+const board = gameBoard.board;
+export {board}
